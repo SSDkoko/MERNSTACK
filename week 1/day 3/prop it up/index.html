@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Person Cards</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        function PersonCard(props) {
+            return `
+                <div class="person-card">
+                    <h2>${props.firstName} ${props.lastName}</h2>
+                    <p>Age: ${props.age}</p>
+                    <p>Hair Color: ${props.hairColor}</p>
+                </div>
+            `;
+        }
+
+        const people = [
+            {
+                firstName: "John",
+                lastName: "Doe",
+                age: 30,
+                hairColor: "Brown"
+            },
+            {
+                firstName: "Jane",
+                lastName: "Smith",
+                age: 25,
+                hairColor: "Blonde"
+            },
+            {
+                firstName: "Michael",
+                lastName: "Johnson",
+                age: 40,
+                hairColor: "Black"
+            },
+            {
+                firstName: "Emily",
+                lastName: "Williams",
+                age: 28,
+                hairColor: "Red"
+            }
+        ];
+
+        const appElement = document.getElementById("app");
+
+        people.forEach(person => {
+            const personCardHtml = PersonCard(person);
+            appElement.insertAdjacentHTML("beforeend", personCardHtml);
+        });
+    </script>
+    
+</body>
+</html>
