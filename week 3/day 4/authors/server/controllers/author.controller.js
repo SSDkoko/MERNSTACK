@@ -1,0 +1,39 @@
+const authors=require("../models/authors.model")
+module.exports.createauthors=(req,res)=>{
+authors.create(req.body)
+.then(
+    myauthors=>{
+        console.log(myauthors)
+        res.status(200).json({myauthors})
+    }
+)
+.catch(err=>{res.status(404).json(err)})
+}
+module.exports.updateauthors=(req,res)=>{
+    authors.findByIdAndUpdate({_id:req.params.id},req.body)
+    .then(newupdate=>{
+        res.status(200).json(newupdate)
+    })
+    .catch(err=>{res.status(404).json(err)})
+}
+module.exports.deleteauthors=(req,res)=>{
+authors.findByIdAndDelete({_id:req.params.id})
+.then(delauthors=>{
+    res.status(200).json(delauthors)
+})
+.catch(err=>{res.status(404).json(err)})
+}
+module.exports.findAllauthors=(req,res)=>{
+authors.find()
+.then(allauthors=>{
+    res.status(200).json(allauthors)
+})
+.catch(err=>{res.status(404).json(err)})
+}
+module.exports.findOneauthors=(req,res)=>{
+    authors.findOne({_id:req.params.id})
+    .then(myauthors=>{
+        res.status(200).json(myauthors)
+    })
+    .catch(err=>{res.status(404).json(err)})
+ }
